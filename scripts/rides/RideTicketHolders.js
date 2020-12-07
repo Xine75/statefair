@@ -7,14 +7,10 @@ const eventHub = document.querySelector("#state-fair")
 export const RideTicketHolders = () => {
     
     eventHub.addEventListener("rideClicked", event => {
-            console.log ("Im listening")
+            console.log ("Ride Tickets listening")
             contentTarget.innerHTML +=  `
             <div class="person rider"></div>
             `
-
-
-
-        
        
     })
 }
