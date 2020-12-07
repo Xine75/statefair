@@ -6,6 +6,7 @@ const eventHub = document.querySelector("#state-fair")
 
 export const FoodTicketHolders = () => {
 
+    //creates a square in food column every time the button is clicked
     eventHub.addEventListener("foodClicked", event => {
         console.log("Food Tickets Listening")
         contentTarget.innerHTML += `

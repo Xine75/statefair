@@ -16,13 +16,30 @@ eventHub.addEventListener("click", event => {
         })
 //Dispatch (broadcast) event to eventHub
         eventHub.dispatchEvent(customEvent)
+        //or was the food ticket clicked?? in that case, do the following
     } else if (event.target.id === "foodTicket") {
+
         const foodEvent = new CustomEvent ("foodClicked", {
             detail: {
                 foodButton: event.target.value
             }
         })
         eventHub.dispatchEvent(foodEvent)
+    } else if (event.target.id === "gameTicket") {
+
+        const gameEvent = new CustomEvent ("gameClicked", {
+            detail: {
+                gameButton: event.target.value
+            }
+        })
+        eventHub.dispatchEvent(gameEvent)
+    } else if (event.target.id === "sideshowTicket") {
+        const sideshowEvent = new CustomEvent ("sideshowClicked", {
+            detail: {
+                sideshowButton: event.target.value
+            }
+        })
+        eventHub.dispatchEvent(sideshowEvent)
     }
 })
 
@@ -31,6 +48,8 @@ export const TicketBooth = () => {
         <div class="ticketBooth">
         <button id="rideTicket">Ride Ticket</button>
         <button id="foodTicket">Food Ticket</button>
+        <button id="gameTicket">Game Ticket</button>
+        <button id="sideshowTicket">Sideshow Ticket</button>
         </div>
         
     `
