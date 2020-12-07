@@ -16,6 +16,13 @@ eventHub.addEventListener("click", event => {
         })
 //Dispatch (broadcast) event to eventHub
         eventHub.dispatchEvent(customEvent)
+    } else if (event.target.id === "foodTicket") {
+        const foodEvent = new CustomEvent ("foodClicked", {
+            detail: {
+                foodButton: event.target.value
+            }
+        })
+        eventHub.dispatchEvent(foodEvent)
     }
 })
 
@@ -23,7 +30,9 @@ export const TicketBooth = () => {
     contentTarget.innerHTML = `
         <div class="ticketBooth">
         <button id="rideTicket">Ride Ticket</button>
+        <button id="foodTicket">Food Ticket</button>
         </div>
+        
     `
 }
 
