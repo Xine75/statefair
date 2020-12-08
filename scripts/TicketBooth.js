@@ -6,8 +6,8 @@ const eventHub = document.querySelector("#state-fair")
 //Create custom message via eventHub. This doesn't run until click event is triggered
 eventHub.addEventListener("click", event => {
 
-//Check to see if ride button was clicked. "rideTicket" must match button id on line 25
-    if (event.target.id === "rideTicket") {
+//Check to see which button was clicked. "rideTicket" must match button id on line 25
+    if (event.target.id === "purchase--rideTicket") {
 //Create customEvent
         const customEvent = new CustomEvent ("rideClicked", {
             detail: {
@@ -16,8 +16,8 @@ eventHub.addEventListener("click", event => {
         })
 //Dispatch (broadcast) event to eventHub
         eventHub.dispatchEvent(customEvent)
-        //or was the food ticket clicked?? in that case, do the following
-    } else if (event.target.id === "foodTicket") {
+        
+    } else if (event.target.id === "purchase--foodTicket") {
 
         const foodEvent = new CustomEvent ("foodClicked", {
             detail: {
@@ -25,7 +25,7 @@ eventHub.addEventListener("click", event => {
             }
         })
         eventHub.dispatchEvent(foodEvent)
-    } else if (event.target.id === "gameTicket") {
+    } else if (event.target.id === "purchase--gameTicket") {
 
         const gameEvent = new CustomEvent ("gameClicked", {
             detail: {
@@ -33,14 +33,14 @@ eventHub.addEventListener("click", event => {
             }
         })
         eventHub.dispatchEvent(gameEvent)
-    } else if (event.target.id === "sideshowTicket") {
+    } else if (event.target.id === "purchase--sideshowTicket") {
         const sideshowEvent = new CustomEvent ("sideshowClicked", {
             detail: {
                 sideshowButton: event.target.value
             }
         })
         eventHub.dispatchEvent(sideshowEvent)
-    } else if (event.target.id === "packageTicket") {
+    } else if (event.target.id === "purchase--packageTicket") {
         const packageEvent = new CustomEvent ("packageClicked", {
             detail: {
                 packageButton: event.target.value
@@ -50,14 +50,22 @@ eventHub.addEventListener("click", event => {
     }
 })
 
+eventHub.addEventListener("click", e => {
+    if (e.target.id === str.startsWith("purchase")) {
+        const ticketEvent = new CustomEvent ("anyButtonClicked",{
+            anyButton: e.target.value
+        })
+    }
+})
+
 export const TicketBooth = () => {
     contentTarget.innerHTML = `
         <div class="ticketBooth">
-        <button id="rideTicket">Ride Ticket</button>
-        <button id="foodTicket">Food Ticket</button>
-        <button id="gameTicket">Game Ticket</button>
-        <button id="sideshowTicket">Sideshow Ticket</button>
-        <button id="packageTicket">Full Package Ticket</button>
+        <button id="purchase--rideTicket">Ride Ticket</button>
+        <button id="purchase--foodTicket">Food Ticket</button>
+        <button id="purchase--gameTicket">Game Ticket</button>
+        <button id="purchase--sideshowTicket">Sideshow Ticket</button>
+        <button id="purchase--packageTicket">Full Package Ticket</button>
         </div>
         
     `
