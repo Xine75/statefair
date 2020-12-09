@@ -51,10 +51,14 @@ eventHub.addEventListener("click", event => {
 })
 
 eventHub.addEventListener("click", e => {
-    if (e.target.id === str.startsWith("purchase")) {
+    if (e.target.id.startsWith("purchase")) {
+        console.log("starts with is working")
         const ticketEvent = new CustomEvent ("anyButtonClicked",{
+            detail: {
             anyButton: e.target.value
+            }
         })
+        eventHub.dispatchEvent(ticketEvent)
     }
 })
 
