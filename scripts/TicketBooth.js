@@ -51,25 +51,33 @@ eventHub.addEventListener("click", event => {
 })
 
 eventHub.addEventListener("click", e => {
-    if (e.target.id.startsWith("purchase")) {
-        console.log("starts with is working")
+    //guard
+    if (!e.target.classList.contains("btn")) {
+        return
+    }
+    //ticket counter to be passed
+        let ticketCount = 1
+        //if id is package update by 4
+        if (e.target.id === "purchase--packageTicket") {
+            ticketCount = 4
+        }
+        //key contains number of tickets purchased
         const ticketEvent = new CustomEvent ("anyButtonClicked",{
             detail: {
-            anyButton: e.target.value
+            ticketSale: ticketCount
             }
         })
         eventHub.dispatchEvent(ticketEvent)
-    }
-})
+    })
 
 export const TicketBooth = () => {
     contentTarget.innerHTML = `
         <div class="ticketBooth">
-        <button id="purchase--rideTicket">Ride Ticket</button>
-        <button id="purchase--foodTicket">Food Ticket</button>
-        <button id="purchase--gameTicket">Game Ticket</button>
-        <button id="purchase--sideshowTicket">Sideshow Ticket</button>
-        <button id="purchase--packageTicket">Full Package Ticket</button>
+        <button class="btn" id="purchase--rideTicket">Ride Ticket</button>
+        <button class="btn" id="purchase--foodTicket">Food Ticket</button>
+        <button class="btn" id="purchase--gameTicket">Game Ticket</button>
+        <button class="btn" id="purchase--sideshowTicket">Sideshow Ticket</button>
+        <button class="btn" id="purchase--packageTicket">Full Package Ticket</button>
         </div>
         
     `
